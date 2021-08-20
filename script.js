@@ -21,36 +21,75 @@ var index = Math.floor(Math.random() * options.length);        */
 var lettersLowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var lettersUppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-var characters = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "\:", "\;", " < ", "=", " > ", " ? ", "@"]
+var characters = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "\:", "\;", " < ", "=", " > ", " ? ", "@",]
 
+var confirmLettersLowercase;
+var confirmLettersUppercase;
+var confirmNumbers;
+var confirmCharacters;
+var confirmInputs = [lettersLowercase.concat(lettersUppercase, numbers, characters)]
 
-
-
-function generatePassword() {
+var generatePassword = function() {
     var passwordLength = window.prompt("How many characters will be in your password?");
 
     if(!passwordLength) {
       window.alert("Must enter a number between 8 and 128");
     }
+
+    else if (passwordLength < 8 || passwordLength > 128) {
+      window.alert("Must enter a number between 8 and 128");
+    }
+    else {
+      confirmLettersLowercase = confirm("Click OK to include lowercase letters.");
+      confirmLettersUppercase = confirm("Click OK to include uppercase letters.");
+      confirmNumbers = confirm("Click OK to include numbers.");
+      confirmCharacters = confirm("Click OK to include special characters.");
+    };
+
+    if (confirmLettersLowercase && confirmLettersUppercase && confirmNumbers && confirmCharacters) {
+        confirmInputs = [lettersLowercase.concat(lettersUppercase, numbers, characters)];
+      } 
+    }
+
+
+
+
+/* const key_strings = {
+  lowercase: 'abcdefghijklmnopqrstuvwxyz',
+  uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+  number: '0123456789',
+  symbol: "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~",
+};
+
+function generatePassword() {
+  var passwordCharSet = "";
+
+  var length = window.prompt("Enter a number from 8 to 128 for password length.");
+
+  var lowercase = window.confirm("Would you like to use lowercase letters?");
+  if (lowercase) {
+    passwordCharSet += key_strings.lowercase;
+  };
+
+  var uppercase = window.confirm("Would you like to use uppercase letters?");
+  if (uppercase) {
+    passwordCharSet += key_strings.uppercase;
+  };
+
+  var symbols = window.confirm("Would you like to use symbols?");
+  if (symbols) {
+    passwordCharSet += key_strings.symbol;
+  };
+
+  var numbers = window.confirm("Would you like to use numbers?");
+  if (numbers) {
+    passwordCharSet += key_strings.number;
+  };
+  var password = "";
+  for (let i = 0; i < length; i++) {
+    password += passwordCharSet[Math.floor(Math.random() * passwordCharSet.length)]
+  }
+  return password;
 }
 
-
-
-
-/* ```
-GIVEN I need a new, secure password
-WHEN I click the button to generate a password
-THEN I am presented with a series of prompts for password criteria
-WHEN prompted for password criteria
-THEN I select which criteria to include in the password
-WHEN prompted for the length of the password
-THEN I choose a length of at least 8 characters and no more than 128 characters
-WHEN asked for character types to include in the password
-THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-WHEN I answer each prompt
-THEN my input should be validated and at least one character type should be selected
-WHEN all prompts are answered
-THEN a password is generated that matches the selected criteria
-WHEN the password is generated
-THEN the password is either displayed in an alert or written to the page
-``` */
+console.log(generatePassword()); */
