@@ -22,7 +22,7 @@ var lettersUppercase = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
 var  numbers = ["123456789"];
 var  symbols = ["!#$%&*+./=>?@"];
 
-// Everything below is inside the function that will generate the password itself
+// This is the function that will generate the password itself
 var generatePassword = function() {
   var passwordOptions = "";
 // Asks user via alert to give input
@@ -46,12 +46,12 @@ var generatePassword = function() {
       if(confirmLettersUppercase){
         passwordOptions += lettersUppercase;
       }
-// If user validates prompt, concats var numbers inside passwordOptions object
+// If user validates prompt, concats numbers inside passwordOptions object
     confirmNumbers = confirm("Click OK to include numbers.");
       if(confirmNumbers) {
         passwordOptions += numbers;
       }
-// If user validates prompt, concats var symbols inside passwordOptions object
+// If user validates prompt, concats symbols inside passwordOptions object
     confirmSymbols = confirm("Click OK to include special characters.");
       if (confirmSymbols) {
         passwordOptions += symbols
