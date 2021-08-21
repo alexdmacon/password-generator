@@ -1,64 +1,11 @@
-// Assignment Code
-var generateBtn = document.querySelector("#generate");
-
-
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
-
-
-// MY CODE BELOW
-
-
 /* //      Important code for later
 var index = Math.floor(Math.random() * options.length);        */
 
+// Assignment Code
+var generateBtn = document.querySelector("#generate");
 
-var  lettersLowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var lettersUppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-var  numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-var  symbols = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "\:", "\;", " < ", "=", " > ", " ? ", "@",];
-
-
-var generatePassword = function() {
-  var passwordOptions = "";
-
-
-  var passwordLength = window.prompt("Pick a number between 8 and 128 to determine your password length.");
-  
-  if(!passwordLength) {
-    window.alert("Must enter a number between 8 and 128");
-  }
-
-  else if (passwordLength < 8 || passwordLength > 128) {
-    window.alert("Must enter a number between 8 and 128");
-  }
-  else {
-    confirmLettersLowercase = confirm("Click OK to include lowercase letters.");
-      if(confirmLettersLowercase){
-        passwordOptions += lettersLowercase;
-      }
-    confirmLettersUppercase = confirm("Click OK to include uppercase letters.");
-      if(confirmLettersUppercase){
-        passwordOptions += lettersUppercase;
-      }
-    confirmNumbers = confirm("Click OK to include numbers.");
-      if(confirmNumbers) {
-        passwordOptions += numbers;
-      }
-    confirmSymbols = confirm("Click OK to include special characters.");
-      if (confirmSymbols) {
-        passwordOptions += symbols
-      };
-    var password = "";
-  for (let i = 0; i < passwordLength; i++) {
-    password += passwordOptions[Math.floor(Math.random() * passwordOptions.length)]
-  }
-  return password;}
-}
-
-generatePassword; 
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
 
 // Write password to the #password input
 function writePassword() {
@@ -67,43 +14,55 @@ function writePassword() {
   passwordText.value = password;
 }
 
+// MY CODE BELOW
 
-/* const key_strings = {
-  lowercase: 'abcdefghijklmnopqrstuvwxyz',
-  uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-  number: '0123456789',
-  symbol: "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~",
-};
+// Defining individual variables from which random password will ultimately generate
+var  lettersLowercase = ["abcdefghijklmnopqrstuvwxyz"];
+var lettersUppercase = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+var  numbers = ["123456789"];
+var  symbols = ["!#$%&*+./=>?@"];
 
-function generatePassword() {
-  var passwordCharSet = "";
-
-  var length = window.prompt("Enter a number from 8 to 128 for password length.");
-
-  var lowercase = window.confirm("Would you like to use lowercase letters?");
-  if (lowercase) {
-    passwordCharSet += key_strings.lowercase;
-  };
-
-  var uppercase = window.confirm("Would you like to use uppercase letters?");
-  if (uppercase) {
-    passwordCharSet += key_strings.uppercase;
-  };
-
-  var symbols = window.confirm("Would you like to use symbols?");
-  if (symbols) {
-    passwordCharSet += key_strings.symbol;
-  };
-
-  var numbers = window.confirm("Would you like to use numbers?");
-  if (numbers) {
-    passwordCharSet += key_strings.number;
-  };
-  var password = "";
-  for (let i = 0; i < length; i++) {
-    password += passwordCharSet[Math.floor(Math.random() * passwordCharSet.length)]
+// Everything below is inside the function that will generate the password itself
+var generatePassword = function() {
+  var passwordOptions = "";
+// Asks user via alert to give input
+  var passwordLength = window.prompt("Pick a number between 8 and 128 to determine your password length.");
+// Alert if user doesn't follow the directions  
+  if(!passwordLength) {
+    window.alert("Must enter a number between 8 and 128");
   }
-  return password;
+// Alert if user doesn't follow the directions  
+  else if (passwordLength < 8 || passwordLength > 128) {
+    window.alert("Must enter a number between 8 and 128");
+  }
+// If user validates prompt, concats var lowercase letters inside passwordOptions object
+  else {
+    confirmLettersLowercase = confirm("Click OK to include lowercase letters.");
+      if(confirmLettersLowercase){
+        passwordOptions += lettersLowercase;
+      }
+// If user validates prompt, concats var uppercase letters inside passwordOptions object
+    confirmLettersUppercase = confirm("Click OK to include uppercase letters.");
+      if(confirmLettersUppercase){
+        passwordOptions += lettersUppercase;
+      }
+// If user validates prompt, concats var numbers inside passwordOptions object
+    confirmNumbers = confirm("Click OK to include numbers.");
+      if(confirmNumbers) {
+        passwordOptions += numbers;
+      }
+// If user validates prompt, concats var symbols inside passwordOptions object
+    confirmSymbols = confirm("Click OK to include special characters.");
+      if (confirmSymbols) {
+        passwordOptions += symbols
+      };
+    var password = "";
+// For loop that does the hard work: pulls random characters from passwordOptions, iterates until user input of passwordLength
+  for (let i = 0; i < passwordLength; i++) {
+    password += passwordOptions[Math.floor(Math.random() * passwordOptions.length)]
+  }
+// Spits out a password
+  return password;}
 }
 
-console.log(generatePassword()); */
+generatePassword; 
